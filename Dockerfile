@@ -4,8 +4,20 @@ LABEL maintainer="Ben Yarmis <ben@yarm.is>"
 COPY systemctl.py /usr/bin/systemctl
 
 RUN apt-get update -y;\
-    apt-get upgrade -y;\
-    apt-get install -y git bc i2c-tools fonts-freefont-ttf whiptail make gcc python3-pil python3-smbus python3-dateutil libfuse-dev sudo;\
+    apt-get install -y \
+        bc \
+        fonts-freefont-ttf \
+        gcc \
+        git \
+        i2c-tools \
+        libfuse-dev \
+        make \
+        python3-dateutil \
+        python3-pil \
+        python3-smbus \
+        sudo \
+        whiptail \
+    ; \
     rm -rf /var/lib/apt/lists/*
 
 # \/ Put this in a requirements \/
