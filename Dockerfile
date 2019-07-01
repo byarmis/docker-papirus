@@ -14,17 +14,17 @@ RUN pip3 install smbus Pillow python-dateutil RPi.GPIO
 
 RUN git clone --depth=1 https://github.com/PiSupply/PaPiRus.git
 WORKDIR PaPiRus
-RUN python3 setup.py install
-WORKDIR /
+RUN python3 setup.py install;\
+    cd / ;\
+    rm -rf PaPiRus
 
 RUN git clone --depth=1 https://github.com/repaper/gratis.git
 WORKDIR gratis
 RUN make rpi EPD_IO=epd_io.h PANEL_VERSION='V231_G2';\
     make rpi-install EPD_IO=epd_io.h PANEL_VERSION='V231_G2';\
-    systemctl enable epd-fuse.service
-WORKDIR /
-
-RUN rm -rf gratis PaPiRus
+    systemctl enable epd-fuse.service;\
+    cd / ;\
+    rm -rf gratis
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
