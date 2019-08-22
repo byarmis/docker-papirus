@@ -3,9 +3,6 @@ LABEL maintainer="Ben Yarmis <ben@yarm.is>"
 
 COPY systemctl.py /usr/bin/systemctl
 
-run apt-get update --yes
-run apt-get install git
-
 RUN apt-get update --yes                                        ;\
     apt-get install                                              \
         --yes                                                    \
